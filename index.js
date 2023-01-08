@@ -16,12 +16,16 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 // app.use(cors(
 //   // origin: 'https://rodeopay.xyz'
 // ));
+// app.use((req, res, next) => {
+//   res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
+//   res.append('Access-Control-Allow-Headers', 'Content-Type');
+//   res.set('Access-Control-Expose-Headers', '*')
+//   next();
+// })
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
-  res.append('Access-Control-Allow-Headers', 'Content-Type');
-  res.set('Access-Control-Expose-Headers', '*')
+  res.header('Access-Control-Allow-Origin', '*');
   next();
-})
+});
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
 //   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
