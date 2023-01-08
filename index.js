@@ -13,9 +13,9 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-app.use(cors(
-  // origin: 'https://rodeopay.xyz'
-));
+// app.use(cors(
+//   // origin: 'https://rodeopay.xyz'
+// ));
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', '*');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
