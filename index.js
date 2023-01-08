@@ -13,19 +13,19 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-// app.use(cors(
-//   // origin: 'https://rodeopay.xyz'
-// ));
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://rodeopay.xyz");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-})
+app.use(cors(
+  // origin: 'https://rodeopay.xyz'
+));
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//   next();
+// })
 
-app.use('/users', userRoutes)
-app.use('/requests', requestRoutes)
-app.use('/transactions', transactionRoutes)
+app.use('/users', cors(), userRoutes)
+app.use('/requests', cors(), requestRoutes)
+app.use('/transactions', cors(), transactionRoutes)
 
 app.get('/', (req, res)=>{
   res.send('APP IS RUNNING')
