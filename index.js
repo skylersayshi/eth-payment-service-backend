@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 //   // origin: 'https://rodeopay.xyz'
 // ));
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', '*');
+  res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   res.set('Access-Control-Expose-Headers', '*')
   next();
