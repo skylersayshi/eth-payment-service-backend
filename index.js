@@ -13,7 +13,7 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-app.use(cors());
+// app.use(cors());
 // app.use((req, res, next) => {
 //   res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
 //   res.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -30,12 +30,19 @@ app.use(cors());
 //   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 //   next();
 // })
-app.options('/users', cors())
-app.options('/requests', cors())
-app.options('/transactions', cors())
-app.use('/users', userRoutes)
-app.use('/requests', requestRoutes)
-app.use('/transactions', transactionRoutes)
+var allowlist = ['https://rodeopay.xyz']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+app.use('/users', cors(corsOptionsDelegate), userRoutes)
+app.use('/requests', cors(corsOptionsDelegate), requestRoutes)
+app.use('/transactions', cors(corsOptionsDelegate), transactionRoutes)
 
 app.get('/', (req, res)=>{
   res.send('APP IS RUNNING')
