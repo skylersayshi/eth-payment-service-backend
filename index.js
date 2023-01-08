@@ -30,7 +30,9 @@ app.use(cors());
 //   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 //   next();
 // })
-
+app.options('/users', cors())
+app.options('/requests', cors())
+app.options('/transactions', cors())
 app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
