@@ -14,7 +14,7 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
-app.use(cors())
+// app.use(cors())
 app.use((req, res, next) => {
   const allowedOrigins = ['https://rodeopay.xyz', 'http://localhost:3000'];
   const origin = req.headers.origin;
