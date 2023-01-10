@@ -1,2 +1,1 @@
 Header always set Access-Control-Allow-Origin "https://rodeopay.xyz"
-Header always set Access-Control-Allow-Headers Access-Control-Allow-Origin
