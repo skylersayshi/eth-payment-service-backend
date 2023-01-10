@@ -11,9 +11,9 @@ const app = express();
 
 dotenv.config();
 
-// app.use(bodyParser.json({ limit: "30mb", extended: true }))
-// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-// app.use(cors());
+app.use(bodyParser.json({ limit: "30mb", extended: true }))
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+app.use(cors());
 // app.use((req, res, next) => {
 //   res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
 //   res.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -40,26 +40,26 @@ dotenv.config();
 //   }
 //   callback(null, corsOptions) // callback expects two parameters: error and options
 // }
-app.use(function (req, res, next) {
+// app.use(function (req, res, next) {
 
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
+//   // Website you wish to allow to connect
+//   res.setHeader('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
 
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   // Request headers you wish to allow
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  // Pass to next layer of middleware
-  next();
-});
-app.use(bodyParser.json({ limit: "30mb", extended: true }))
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+//   // Pass to next layer of middleware
+//   next();
+// });
+// app.use(bodyParser.json({ limit: "30mb", extended: true }))
+// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
