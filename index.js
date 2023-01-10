@@ -13,63 +13,13 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-var corsOptions = {
-  origin: function (origin, callback) {
-    // db.loadOrigins is an example call to load
-    // a list of origins from a backing database
-    db.loadOrigins(function (error, origins) {
-      callback(error, origins)
-    })
-  }
-}
-app.use(cors(corsOptions))
-// app.options('*', cors())
-// app.use((req, res, next) => {
-//   res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
-//   res.append('Access-Control-Allow-Headers', 'Content-Type');
-//   res.set('Access-Control-Expose-Headers', '*')
-//   next();
-// })
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// })
-// var allowlist = ['https://rodeopay.xyz']
-// var corsOptionsDelegate = function (req, callback) {
-//   var corsOptions;
-//   if (allowlist.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions = { origin: false } // disable CORS for this request
-//   }
-//   callback(null, corsOptions) // callback expects two parameters: error and options
-// }
-// app.use(function (req, res, next) {
+const issue2options = {
+  origin: true,
+  // methods: ["POST"],
+  credentials: false,
+};
+app.use(cors(issue2options))
 
-//   // Website you wish to allow to connect
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-
-//   // Request methods you wish to allow
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//   // Request headers you wish to allow
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-//   // Set to true if you need the website to include cookies in the requests sent
-//   // to the API (e.g. in case you use sessions)
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-
-//   // Pass to next layer of middleware
-//   next();
-// });
-// app.use(bodyParser.json({ limit: "30mb", extended: true }))
-// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
