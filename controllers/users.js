@@ -11,6 +11,7 @@ export const getUsers = async (req, res) =>{
         // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
         //end new
+        res.set('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
         const users = await User.find();
         console.log(users);
 
