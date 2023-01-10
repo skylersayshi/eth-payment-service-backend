@@ -13,16 +13,12 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-const issue2options = {
-  origin: 'https://rodeopay.xyz',
-  // methods: ["POST"],
-  credentials: false,
-};
-app.use(cors(issue2options))
 
-app.use('/users', userRoutes)
-app.use('/requests', requestRoutes)
-app.use('/transactions', transactionRoutes)
+// app.use(cors())
+
+app.use('/users', cors(), userRoutes)
+app.use('/requests', cors(), requestRoutes)
+app.use('/transactions', cors(), transactionRoutes)
 
 app.get('/', (req, res)=>{
   res.send('APP IS RUNNING')
