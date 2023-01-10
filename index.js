@@ -15,7 +15,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
 // app.use(cors())
-app.use((req, res, next) => {
+function test(req, res, next) {
   const allowedOrigins = ['https://rodeopay.xyz', 'http://localhost:3000'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
@@ -26,11 +26,11 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', true);
   return next();
-});
+};
 
-app.use('/users', userRoutes)
-app.use('/requests', requestRoutes)
-app.use('/transactions', transactionRoutes)
+app.use('/users', test(req,res,next), userRoutes)
+app.use('/requests', test(req,res,next), requestRoutes)
+app.use('/transactions', test(req,res,next), transactionRoutes)
 
 app.get('/', (req, res)=>{
   res.send('APP IS RUNNING')
