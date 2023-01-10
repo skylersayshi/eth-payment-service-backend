@@ -14,11 +14,11 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
-// app.use(cors())
+app.use(cors())
 
-app.use('/users', cors(), userRoutes)
-app.use('/requests', cors(), requestRoutes)
-app.use('/transactions', cors(), transactionRoutes)
+app.use('/users', userRoutes)
+app.use('/requests', requestRoutes)
+app.use('/transactions', transactionRoutes)
 
 app.get('/', (req, res)=>{
   res.send('APP IS RUNNING')
