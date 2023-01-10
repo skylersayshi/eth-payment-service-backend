@@ -30,7 +30,7 @@ app.use(cors({
 //   return next();
 // };
 
-app.use('/users', userRoutes)
+app.use('/users', cors({origin: "*"}), userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
 
