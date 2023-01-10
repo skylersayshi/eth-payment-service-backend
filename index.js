@@ -11,8 +11,8 @@ const app = express();
 
 dotenv.config();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }))
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+// app.use(bodyParser.json({ limit: "30mb", extended: true }))
+// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 // app.use(cors());
 // app.use((req, res, next) => {
 //   res.append('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
@@ -58,6 +58,8 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+app.use(bodyParser.json({ limit: "30mb", extended: true }))
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
