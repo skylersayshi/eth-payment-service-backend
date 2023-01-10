@@ -5,16 +5,7 @@ const router = express.Router()
 
 export const getUsers = async (req, res) =>{
     try{
-        //new
-        // res.setHeader("Access-Control-Allow-Origin", "*");
-        // res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-        // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-        //end new
-        res.set('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
         const users = await User.find();
-        console.log(users);
-
         res.status(200).json(users);
     } catch(error){
         res.status(404).json({message: error.message})
