@@ -14,8 +14,16 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
-app.use(cors())
-app.options('*', cors()); 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+// app.use(cors())
+// app.options('*', cors()); 
 // function test(req, res, next) {
 //   const allowedOrigins = ['https://rodeopay.xyz', 'http://localhost:3000'];
 //   const origin = req.headers.origin;
@@ -33,9 +41,9 @@ app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
 
-app.get('/', (req, res)=>{
-  res.send('APP IS RUNNING')
-})
+// app.get('/', (req, res)=>{
+//   res.send('APP IS RUNNING')
+// })
 
 const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT || 5001;
