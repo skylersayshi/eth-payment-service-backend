@@ -5,8 +5,13 @@ const router = express.Router()
 
 export const getUsers = async (req, res) =>{
     try{
-        const users = await User.find();
+        // const users = await User.find();
+        const users = [{
+            name: "Mike",
+            age: 37
+        }]
         // res.setHeader('Access-Control-Allow-Origin', 'https://rodeopay.xyz');
+        console.log(users)
         res.status(200).json(users);
     } catch(error){
         res.status(404).json({message: error.message})
