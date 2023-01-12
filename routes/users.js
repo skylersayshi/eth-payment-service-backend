@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 
 import { getUsers, createUser, updateUser, deleteUser } from '../controllers/users.js'
 
@@ -24,7 +23,7 @@ const router = express.Router()
 //     next();
 //   });
 
-router.get('/', getUsers)
+router.get('/you', getUsers)
 router.post('/new', createUser)
 router.patch('/:id', updateUser)
 router.delete('/:id', deleteUser)
