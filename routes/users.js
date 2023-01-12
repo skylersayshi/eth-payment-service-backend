@@ -23,7 +23,7 @@ const router = express.Router()
 //     next();
 //   });
 
-router.get('/', getUsers)
+router.get('/you', getUsers)
 router.post('/new', createUser)
 router.patch('/:id', updateUser)
 router.delete('/:id', deleteUser)
